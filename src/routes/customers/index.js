@@ -10,7 +10,7 @@ import authMiddleware from '../../app/middlewares/auth';
 
 const routes = new Router();
 
-routes.post('/session', SessionController.store);
+routes.post('/sessions', SessionController.store);
 
 routes.post('/', validateCustomerStore, CustomerController.store);
 routes.put(
