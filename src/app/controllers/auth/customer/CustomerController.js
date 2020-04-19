@@ -22,7 +22,7 @@ class CustomerController {
   async update(req, res) {
     const { email, oldPassword } = req.body;
 
-    const customer = await Customer.findByPk(req.customerId);
+    const customer = await Customer.findByPk(req.userId);
 
     if (email !== customer.email) {
       const customerExists = await Customer.findOne({
@@ -40,7 +40,7 @@ class CustomerController {
 
     await customer.update(req.body);
 
-    const { id, name } = await Customer.findByPk(req.customerId);
+    const { id, name } = await Customer.findByPk(req.userId);
 
     return res.json({
       id,

@@ -1,30 +1,30 @@
 import jwt from 'jsonwebtoken';
 
 import authConfig, { guards } from '../../../../config/auth';
-import Customer from '../../../models/Customer';
+import Broker from '../../../models/Broker';
 
 class SessionController {
   async store(req, res) {
     const { email, password } = req.body;
 
-    const customer = await Customer.findOne({ where: { email } });
+    const broker = await Broker.findOne({ where: { email } });
 
-    if (!customer) {
-      res.status(401).json({ error: 'Customer not found' });
+    if (!broker) {
+      res.status(401).json({ error: 'Broker not found' });
     }
 
-    if (!(await customer.checkPassword(password))) {
+    if (!(await broker.checkPassword(password))) {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
-    const { id, name } = customer;
+    const { id, name } = broker;
     return res.json({
-      customer: {
+      broker: {
         id,
         name,
         email,
       },
-      token: jwt.sign({ id, guard: guards.customer }, authConfig.secret, {
+      token: jwt.sign({ id, guard: guards.broker }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
     });

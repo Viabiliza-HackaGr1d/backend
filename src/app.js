@@ -16,8 +16,6 @@ class App {
     this.app = express();
     this.server = new Server(this.app);
 
-    this.server = express();
-
     this.middlewares();
     this.routes();
   }
