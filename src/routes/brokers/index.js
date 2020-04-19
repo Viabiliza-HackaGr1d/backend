@@ -22,7 +22,7 @@ routes.put(
   BrokerController.update
 );
 
-routes.get('/', authMiddleware('broker'), BrokerController.show);
+routes.get('/', authMiddleware('broker'), BrokerController.index);
 routes.get(
   '/:id/dashboard',
   authMiddleware('broker'),

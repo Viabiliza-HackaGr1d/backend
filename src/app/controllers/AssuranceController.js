@@ -3,7 +3,6 @@ import Broker from '../models/Broker';
 import Category from '../models/Category';
 
 class AssuranceController {
-  // This route should be used only by the broker
   async store(req, res) {
     const { category_id, customer_id, desc, clauses } = req.body;
     const broker_id = req.userId;
@@ -53,11 +52,9 @@ class AssuranceController {
     const { status, clauses } = req.body;
     switch (req.userId) {
       default:
-        return res
-          .status(401)
-          .json({
-            error: "You're not allowed to make changes to this assurance.",
-          });
+        return res.status(401).json({
+          error: "You're not allowed to make changes to this assurance.",
+        });
       case assurance.broker_id:
         if (clauses) {
           assurance.clauses = clauses;
