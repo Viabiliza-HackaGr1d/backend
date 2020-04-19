@@ -7,8 +7,8 @@ class AssuranceController {
   // This route should be used only by the broker
   async store(req, res){
 
-    const { category_id, broker_id, desc, clauses } = req.body;
-    const { userId: customer_id } = req.body;
+    const { category_id, customer_id, desc, clauses } = req.body;
+    const broker_id = req.userId;
 
     if (customer_id === broker_id){
       return res.status(401).json({ error: 'Broker must be different thant the customer.' });
