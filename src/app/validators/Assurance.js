@@ -10,7 +10,7 @@ export const storeValidator = async (req, res, next)=>{
       desc: Yup.string().trim().required(),
       clauses: Yup.string().required(),
       company_name: Yup.string().trim().required(),
-      comapny_cnpj: Yup.string().trim().required()
+      company_cnpj: Yup.string().trim().required()
     });
 
     await schema.validate(req.body, { abortEarly: false });

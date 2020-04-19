@@ -2,7 +2,7 @@ import Sequelize, { Model } from 'sequelize';
 
 class File extends Model {
 
-  static init(sequelize) {
+  static init(connection) {
     super.init(
         {
             name: Sequelize.STRING,
@@ -15,7 +15,7 @@ class File extends Model {
             },
         },
         {
-            sequelize,
+            sequelize: connection,
         }
     );
 
