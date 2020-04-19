@@ -4,7 +4,6 @@ import Category from '../models/Category';
 
 class AssuranceController {
 
-  // This route should be used only by the broker
   async store(req, res){
 
     const { category_id, customer_id, desc, clauses } = req.body;
