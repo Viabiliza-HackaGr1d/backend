@@ -1,12 +1,12 @@
 import { Router } from 'express';
 
 import AssuranceController from '../../app/controllers/AssuranceController';
-// Needs a validator
+import { storeValidator, updateValidator, deleteValidator } from '../../app/validators/Assurance';
 
 const routes = new Router();
 
-routes.post('/', AssuranceController.store);
-routes.put('/', AssuranceController.update);
-routes.delete('/', AssuranceController.delete);
+routes.post('/', storeValidator, AssuranceController.store);
+routes.put('/', updateValidator, AssuranceController.update);
+routes.delete('/', deleteValidator, AssuranceController.delete);
 
 export default routes;
