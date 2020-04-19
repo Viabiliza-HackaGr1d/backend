@@ -11,7 +11,9 @@ class Assurance extends Model {
         //0 = Pending customer approvation | 1 = Accepted | 2 = Rejected
         //                                 | 3 = Pending cancellation  | 4 = Cancelled
         status: Sequelize.INTEGER,
-        cancelled_by: Sequelize.INTEGER
+        cancelled_by: Sequelize.INTEGER,
+        broker_id: Sequelize.INTEGER,
+        customer_id: Sequelize.INTEGER,
       },
       {
         sequelize: connection,
@@ -21,12 +23,17 @@ class Assurance extends Model {
     return this;
   }
 
-  static associate(models){
-    this.belongsTo(models.Customer, { foreignKey: 'customer_id', as: 'customer' });
+  static associate(models) {
+    this.belongsTo(models.Customer, {
+      foreignKey: 'customer_id',
+      as: 'customer',
+    });
     this.belongsTo(models.Broker, { foreignKey: 'broker_id', as: 'broker' });
-    this.belongsTo(models.Customer, { foreignKey: 'category_id', as: 'category' });
+    this.belongsTo(models.Category, {
+      foreignKey: 'category_id',
+      as: 'category',
+    });
   }
-
 }
 
 export default Assurance;

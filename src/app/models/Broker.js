@@ -24,8 +24,11 @@ class Broker extends Model {
     return this;
   }
 
-  static associate(models){
+  static associate(models) {
     this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+    this.hasMany(models.Assurance, {
+      as: 'assurances',
+    });
   }
 
   checkPassword(password) {
