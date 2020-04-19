@@ -3,10 +3,12 @@ import mongoose from 'mongoose';
 
 import Customer from '../app/models/Customer';
 import Broker from '../app/models/Broker';
+import Category from '../app/models/Category';
+import Assurance from '../app/models/Assurance';
 
 import databaseConfig from '../config/database';
 
-const models = [Customer, Broker];
+const models = [Customer, Broker, Category, Assurance];
 
 class Database {
   constructor() {
