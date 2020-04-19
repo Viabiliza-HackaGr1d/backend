@@ -1,5 +1,3 @@
-import Category from '../models/Category';
-
 import * as Yup from 'yup';
 
 export const updateValidator = async (req, res, next)=>{
