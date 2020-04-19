@@ -2,10 +2,9 @@ import Broker from '../models/Broker';
 import Assurance from '../models/Assurance';
 import File from '../models/File';
 
-
 class BrokerController {
 
-  async show(req, res) {
+  async index(req, res) {
     const { category_id } = req.query;
 
     const brokers = await Assurance.findAll({

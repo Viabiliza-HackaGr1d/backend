@@ -19,6 +19,6 @@ routes.put(
   BrokerController.update
 );
 
-routes.get('/', authMiddleware('broker'), BrokerController.show);
+routes.get('/', authMiddleware('broker'), BrokerController.index);
 
 export default routes;
