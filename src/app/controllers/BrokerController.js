@@ -1,6 +1,39 @@
-import Broker from '../../../models/Broker';
+import Broker from '../models/Broker';
+import Assurance from '../models/Assurance';
+import File from '../models/File';
+
 
 class BrokerController {
+
+  async show(req, res) {
+    const { category_id } = req.query;
+
+    const brokers = await Assurance.findAll({
+      where: {
+        category_id
+      },
+      attributes: ['broker_id'],
+      include: [
+        {
+          model: Broker,
+          as: 'broker',
+          attributes: ['id', 'name', 'avatar_id'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'path', 'url']
+            }
+          ]
+        }
+      ]
+    }).map(broker => {
+      return broker.broker;
+    });
+
+    return res.json(brokers);
+  }
+
   async store(req, res) {
     const brokerExists = await Broker.findOne({
       where: { email: req.body.email },

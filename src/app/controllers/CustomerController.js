@@ -1,4 +1,4 @@
-import Customer from '../../../models/Customer';
+import Customer from '../models/Customer';
 
 class CustomerController {
   async store(req, res) {
