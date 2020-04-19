@@ -1,5 +1,19 @@
 import * as Yup from 'yup';
 
+export const storeValidator = async (req, res, next)=>{
+  try {
+    const schema = Yup.object().shape({
+      name: Yup.string().trim().required("A name must be informed.")
+    });
+
+    await schema.validate(req.body, { abortEarly: false });
+
+    return next();
+  } catch (err) {
+    return res.status(400).json({ messages: err.inner });
+  }
+};
+
 export const updateValidator = async (req, res, next)=>{
   try {
     const schema = Yup.object().shape({
