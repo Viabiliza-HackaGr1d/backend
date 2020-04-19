@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import BrokerController from '../../app/controllers/auth/broker/BrokerController';
+import BrokerController from '../../app/controllers/BrokerController';
 import SessionController from '../../app/controllers/auth/broker/SessionController';
 
 import validateBrokerStore from '../../app/validators/BrokerStore';
@@ -15,9 +15,10 @@ routes.post('/sessions', SessionController.store);
 routes.post('/', validateBrokerStore, BrokerController.store);
 routes.put(
   '/:id',
-  authMiddleware('broker'),
   validateBrokerUpdate,
   BrokerController.update
 );
+
+routes.get('/', authMiddleware('broker'), BrokerController.show);
 
 export default routes;

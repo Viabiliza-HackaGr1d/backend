@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import CustomerController from '../../app/controllers/auth/customer/CustomerController';
+import CustomerController from '../../app/controllers/CustomerController';
 import SessionController from '../../app/controllers/auth/customer/SessionController';
 
 import validateCustomerStore from '../../app/validators/CustomerStore';
